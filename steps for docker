@@ -1,0 +1,148 @@
+PART 1: GENERIC HTML (USE FOR ANY QUESTION)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conference Page</title>
+</head>
+<body>
+
+    <h1>Welcome to Conference</h1>
+
+    <h2>Event Details</h2>
+    <p>Date: 10 March 2026</p>
+    <p>Venue: VIT, Vellore</p>
+
+    <h2>Speakers</h2>
+    <ul>
+        <li>Speaker 1</li>
+        <li>Speaker 2</li>
+    </ul>
+
+    <h2>Schedule</h2>
+    <p>10 AM - Opening</p>
+    <p>12 PM - Session</p>
+
+    <h2>Registration</h2>
+    <form>
+        Name: <input type="text"><br><br>
+        Email: <input type="email"><br><br>
+        <button type="submit">Register</button>
+    </form>
+
+</body>
+</html>
+
+PART 2: DOCKERFILE (STANDARD FOR ALL)
+
+👉 Use this SAME Dockerfile always:
+
+FROM nginx:alpine
+RUN rm -rf /usr/share/nginx/html/*
+COPY . /usr/share/nginx/html
+EXPOSE 80
+🌐 🔹 PART 3: GITHUB (SHORT STEPS)
+
+👉 Do this:
+
+Create repo → conference-app
+Add files:
+index.html
+Dockerfile
+(optional) README.md
+
+✔ Done
+
+PART 4: CLONING IN VS CODE (YOU WILL DO THIS)
+Steps:
+
+Open VS Code → Terminal:
+
+git clone https://github.com/yourusername/conference-app.git
+cd conference-app
+code .
+
+👉 Now project folder is in your system ✅
+
+🐳 🔹 PART 5: DOCKER SETUP (VERY IMPORTANT)
+✅ What to ENABLE?
+
+👉 Just install & start Docker — nothing else
+
+Steps:
+Install Docker Desktop
+Open it
+Ensure:
+Docker is running
+✅ Check Docker:
+docker --version
+Run Your Project (MANUAL TEST)
+
+Inside project folder:
+
+docker build -t conference-app .
+docker run -d -p 8080:80 conference-app
+✅ Open App
+http://localhost:8080
+🤖 🔹 PART 6: JENKINS SETUP (CLEAR)
+✅ Install Jenkins
+Install Jenkins
+Open:
+http://localhost:8080
+✅ First Setup
+Enter password
+Install suggested plugins
+Create user
+✅ Install Plugins (IMPORTANT)
+
+Go to:
+👉 Manage Jenkins → Plugins
+
+Install:
+
+Git plugin
+Pipeline
+Docker Pipeline
+✅ Create Pipeline Job
+New Item
+Name: conference-app
+Select Pipeline
+✅ Add Pipeline Code
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/yourusername/conference-app.git'
+            }
+        }
+
+        stage('Build Docker') {
+            steps {
+                sh 'docker build -t conference-app .'
+            }
+        }
+
+        stage('Run App') {
+            steps {
+                sh 'docker run -d -p 8082:80 conference-app'
+            }
+        }
+    }
+}
+✅ Run Jenkins
+Save
+Click Build Now
+✅ Open App
+http://localhost:8082
+🔥 🔹 FINAL FLOW (REMEMBER FOR EXAM)
+GitHub → VS Code (clone) → Docker → Jenkins → Browser
+🧠 🔹 WHAT YOU MUST REMEMBER
+
+✔ HTML → create webpage
+✔ Docker → run app
+✔ Jenkins → automate
+✔ GitHub → store code
+✔ Clone → bring code to system
