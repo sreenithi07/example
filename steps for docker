@@ -146,3 +146,26 @@ GitHub → VS Code (clone) → Docker → Jenkins → Browser
 ✔ Jenkins → automate
 ✔ GitHub → store code
 ✔ Clone → bring code to system
+
+
+
+
+
+
+
+
+
+
+
+
+Credentials 
+System
+Username and password 
+Id: dockerhub
+
+
+
+Credentials 
+Secret file
+C: .kube : config
+Id: kubernetes credentials
