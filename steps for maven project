@@ -1,0 +1,162 @@
+COMPLETE FLOW
+GitHub → VS Code (clone) → Maven build → Jenkins
+✅ 🔹 STEP 1: CREATE GITHUB REPOSITORY
+Go to GitHub
+Click New repository
+Name:
+simple-maven-app
+Click Create
+✅ 🔹 STEP 2: CREATE FILE STRUCTURE IN GITHUB
+
+👉 You must create 3 MAIN FILES (IMPORTANT)
+
+📁 STRUCTURE
+simple-maven-app/
+│
+├── pom.xml                ✅
+│
+└── src/
+    ├── main/java/com/example/App.java     ✅
+    └── test/java/com/example/AppTest.java ✅
+
+    FILE 1: pom.xml
+
+👉 Create file → name: pom.xml
+👉 Paste:
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>simple-maven-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Simple Maven App</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+FILE 2: App.java
+
+👉 Create file with FULL PATH:
+
+src/main/java/com/example/App.java
+package com.example;
+
+public class App {
+    public static void main(String[] args) {
+        System.out.println("Maven Project Running Successfully!");
+    }
+}
+FILE 3: AppTest.java
+
+👉 Create file:
+
+src/test/java/com/example/AppTest.java
+package com.example;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class AppTest {
+
+    @Test
+    public void testApp() {
+        assertTrue(true);
+    }
+}
+STEP 3: CLONE IN VS CODE (YOU WILL FOLLOW THIS)
+
+Open VS Code → Terminal:
+
+git clone https://github.com/yourusername/simple-maven-app.git
+cd simple-maven-app
+code .
+STEP 4: BUILD PROJECT (MAVEN)
+
+👉 Make sure Maven installed
+
+Run:
+
+mvn clean install
+
+👉 Output:
+
+BUILD SUCCESS
+STEP 4: BUILD PROJECT (MAVEN)
+
+👉 Make sure Maven installed
+
+Run:
+
+mvn clean install
+
+👉 Output:
+
+BUILD SUCCESS
+4. Clean project
+mvn clean
+
+STEP 5: JENKINS SETUP
+✅ Create Pipeline Job
+Open Jenkins
+Click New Item
+Name: simple-maven-app
+Select Pipeline
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/yourusername/simple-maven-app.git'
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
+}
+Run Jenkins
+Click Save
+Click Build Now
+✅ Output
+
+✔ Code cloned
+✔ Build success
+✔ Test executed
+
+🔥 🔹 FINAL UNDERSTANDING
+Step	Tool
+Create files	GitHub
+Clone repo	VS Code
+Build project	Maven
+Automate	Jenkins
